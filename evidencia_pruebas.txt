@@ -1,0 +1,339 @@
+====================================================
+EVIDENCIA DE PRUEBAS FUNCIONALES
+Club Deportivo FitLife — Equipo ACAITUSI
+Diego Alarcon | Sebastian Perez
+Fullstack I — Sección 0_10D | Prof. Christian Acuña
+====================================================
+
+Las pruebas fueron ejecutadas via Swagger UI en:
+http://localhost:8080/swagger-ui.html
+
+====================================================
+1. SOCIOS-SERVICE
+====================================================
+
+[GET] /api/v1/socios
+- Descripción: Listar todos los socios
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/socios/{id} — ID existente (id=1)
+- Descripción: Buscar socio por ID
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/socios/{id} — ID inexistente (id=999)
+- Descripción: Buscar socio por ID no existente
+- Status esperado: 404 Not Found
+- Status obtenido: 404 Not Found
+- Resultado: PASS
+
+[POST] /api/v1/socios
+- Descripción: Registrar nuevo socio
+- Status esperado: 201 Created
+- Status obtenido: 201 Created
+- Resultado: PASS
+
+[PUT] /api/v1/socios/{id}
+- Descripción: Actualizar socio existente
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[DELETE] /api/v1/socios/{id}
+- Descripción: Eliminar socio
+- Status esperado: 204 No Content
+- Status obtenido: 204 No Content
+- Resultado: PASS
+
+[GET] /api/v1/socios/listado
+- Descripción: Listar socios como DTO
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/socios/reporte/estado?estado=ACTIVO
+- Descripción: Filtrar socios por estado
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/socios/reporte/rut?rut=12345678-9
+- Descripción: Buscar socio por RUT existente
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/socios/reporte/rut?rut=99999999-9
+- Descripción: Buscar socio por RUT inexistente
+- Status esperado: 404 Not Found
+- Status obtenido: 404 Not Found
+- Resultado: PASS
+
+[GET] /api/v1/categorias
+- Descripción: Listar categorías de socios
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/contactos/reporte/socio/{socioId}
+- Descripción: Buscar contacto de emergencia por socio
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+====================================================
+2. MEMBRESIAS-SERVICE
+====================================================
+
+[GET] /api/v1/membresias
+- Descripción: Listar todas las membresías
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/membresias/{id} — ID existente (id=1)
+- Descripción: Buscar membresía por ID
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/membresias/{id} — ID inexistente (id=999)
+- Descripción: Buscar membresía por ID no existente
+- Status esperado: 404 Not Found
+- Status obtenido: 404 Not Found
+- Resultado: PASS
+
+[POST] /api/v1/membresias
+- Descripción: Registrar nueva membresía
+- Status esperado: 201 Created
+- Status obtenido: 201 Created
+- Resultado: PASS
+
+[PUT] /api/v1/membresias/{id}
+- Descripción: Actualizar membresía existente
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[DELETE] /api/v1/membresias/{id}
+- Descripción: Eliminar membresía
+- Status esperado: 204 No Content
+- Status obtenido: 204 No Content
+- Resultado: PASS
+
+[GET] /api/v1/membresias/listado
+- Descripción: Listar membresías con objeto socio hidratado via Feign
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Verificación Feign: objeto "socio" presente con nombreCompleto, rut, categoriaNombre
+- Resultado: PASS
+
+[GET] /api/v1/membresias/reporte/estado?estado=ACTIVA
+- Descripción: Filtrar membresías por estado
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/membresias/reporte/socio/{socioId}
+- Descripción: Historial de membresías de un socio
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/planes
+- Descripción: Listar planes de membresía
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/congelamientos
+- Descripción: Listar congelamientos
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+====================================================
+3. CLASES-SERVICE
+====================================================
+
+[GET] /api/v1/clases
+- Descripción: Listar todas las clases
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/clases/{id} — ID existente (id=1)
+- Descripción: Buscar clase por ID
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/clases/{id} — ID inexistente (id=999)
+- Descripción: Buscar clase por ID no existente
+- Status esperado: 404 Not Found
+- Status obtenido: 404 Not Found
+- Resultado: PASS
+
+[POST] /api/v1/clases
+- Descripción: Registrar nueva clase (verifica instructor via Feign)
+- Status esperado: 201 Created
+- Status obtenido: 201 Created
+- Resultado: PASS
+
+[PUT] /api/v1/clases/{id}
+- Descripción: Actualizar clase existente
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[DELETE] /api/v1/clases/{id}
+- Descripción: Eliminar clase
+- Status esperado: 204 No Content
+- Status obtenido: 204 No Content
+- Resultado: PASS
+
+[GET] /api/v1/clases/reporte/nivel?nivelDificultad=INTERMEDIO
+- Descripción: Filtrar clases por nivel de dificultad
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/inscripciones
+- Descripción: Listar todas las inscripciones
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[POST] /api/v1/inscripciones
+- Descripción: Inscribir socio a clase (verifica socio via Feign, controla cupo)
+- Status esperado: 201 Created
+- Status obtenido: 201 Created
+- Resultado: PASS
+
+[GET] /api/v1/inscripciones/listado
+- Descripción: Listar inscripciones con objeto socio hidratado via Feign
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Verificación Feign: objeto "socio" presente con nombreCompleto, rut, categoriaNombre
+- Resultado: PASS
+
+[GET] /api/v1/inscripciones/reporte/socio/{socioId}
+- Descripción: Inscripciones de un socio específico
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/horarios/reporte/dia?diaSemana=LUNES
+- Descripción: Filtrar horarios por día de semana
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+====================================================
+4. PAGOS-SERVICE
+====================================================
+
+[GET] /api/v1/pagos
+- Descripción: Listar todos los pagos
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/pagos/{id} — ID existente (id=1)
+- Descripción: Buscar pago por ID
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/pagos/{id} — ID inexistente (id=999)
+- Descripción: Buscar pago por ID no existente
+- Status esperado: 404 Not Found
+- Status obtenido: 404 Not Found
+- Resultado: PASS
+
+[POST] /api/v1/pagos
+- Descripción: Registrar nuevo pago (verifica socio via Feign)
+- Status esperado: 201 Created
+- Status obtenido: 201 Created
+- Resultado: PASS
+
+[PUT] /api/v1/pagos/{id}
+- Descripción: Actualizar pago existente
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[DELETE] /api/v1/pagos/{id}
+- Descripción: Eliminar pago
+- Status esperado: 204 No Content
+- Status obtenido: 204 No Content
+- Resultado: PASS
+
+[GET] /api/v1/pagos/listado
+- Descripción: Listar pagos con objeto socio hidratado via Feign
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Verificación Feign: objeto "socio" presente con nombreCompleto, rut, categoriaNombre
+- Resultado: PASS
+
+[GET] /api/v1/pagos/reporte/estado?estado=PAGADO
+- Descripción: Filtrar pagos por estado
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/pagos/reporte/socio/{socioId}
+- Descripción: Historial de pagos de un socio
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/deudas
+- Descripción: Listar todas las deudas
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/deudas/listado
+- Descripción: Listar deudas con objeto socio hidratado via Feign
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Verificación Feign: objeto "socio" presente con nombreCompleto, rut, categoriaNombre
+- Resultado: PASS
+
+[GET] /api/v1/deudas/reporte/estado?estado=PENDIENTE
+- Descripción: Filtrar deudas por estado
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+[GET] /api/v1/metodos-pago
+- Descripción: Listar métodos de pago
+- Status esperado: 200 OK
+- Status obtenido: 200 OK
+- Resultado: PASS
+
+====================================================
+RESUMEN
+====================================================
+
+Microservicio         | Total | PASS | FAIL
+----------------------|-------|------|-----
+socios-service        |  12   |  12  |  0
+membresias-service    |  11   |  11  |  0
+clases-service        |  12   |  12  |  0
+pagos-service         |  13   |  13  |  0
+----------------------|-------|------|-----
+TOTAL                 |  48   |  48  |  0
+
+Cobertura funcional: 100% (48/48 endpoints PASS)
+
+Entorno de prueba:
+- Modalidad: Docker (docker compose up --build)
+- API Gateway: http://localhost:8080
+- Swagger UI: http://localhost:8080/swagger-ui.html
+- Fecha de ejecución: 23/06/2026
+====================================================
